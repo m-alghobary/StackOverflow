@@ -18,10 +18,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <EditorConfigFiles Remove="C:\Users\malgh\OneDrive\Desktop\dev\StackOverflow\StackOverflow\.editorconfig" />
   </ItemGroup>
 
