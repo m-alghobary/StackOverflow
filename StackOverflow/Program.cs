@@ -1,4 +1,13 @@
+using Microsoft.EntityFrameworkCore;
+using StackOverflow.Data;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<AppDbContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DB"));
+    options.EnableSensitiveDataLogging();
+});
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
