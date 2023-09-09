@@ -20,6 +20,12 @@ public class PostsController : ControllerBase
     {
         var posts = _context.Posts
             .OrderByDescending(row => row.ClosedDate)
+            .Select(i => new
+            {
+                i.Id,
+                i.Title,
+            
+            })
             .Skip(0)
             .Take(20);
 
