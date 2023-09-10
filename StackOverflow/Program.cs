@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using StackOverflow.Data;
+using StackExchange.Profiling.Storage;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +14,13 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     });
     options.EnableSensitiveDataLogging();
 });
+
+
+builder.Services.AddMiniProfiler(options =>
+{
+    (options.Storage as MemoryCacheStorage).CacheDuration = TimeSpan.FromMinutes(5);
+}).AddEntityFramework();
+
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -29,5 +37,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
+app.UseMiniProfiler();
+
 
 app.Run();
